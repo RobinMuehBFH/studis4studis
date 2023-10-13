@@ -1,0 +1,147 @@
+.inserat-container{
+    padding-top: 20px;
+}
+.inserat-header{
+    width: 100%;
+    margin-top: 20px;
+}
+.title-container{
+    padding-left: 3.3%;
+    padding-right: 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title-container-first{
+  display: flex;
+  align-items: center;
+}
+
+#searchInput{
+  margin: 0 0 0 20px;
+  width: 300px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('src/assets/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+#filterOptions{
+  color: grey;
+  margin: 0 0 0 20px;
+  width: 300px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('src/assets/filterIcon.png');
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: 11px 11px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  cursor: pointer;
+}
+
+.title{
+    font-size: 30px;
+    margin: 0;
+}
+.inserat-card {
+    max-width: 300px;
+    height: 550px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .inserat-card-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+.mat-card-image{
+    max-width: 270px;
+    height: 250px;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 10px
+}
+
+.bfh-button{
+    color: #fff;
+    background-color: #37556e;
+}
+.mat-card-actions{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-card-content{
+  max-height: 150px;
+  width: 300px;
+  overflow: auto;
+  text-overflow: ellipsis;
+  margin-top: 16px;
+  overflow-x: hidden;
+}
+
+.description{
+  max-width: 270px;
+  margin: 0 auto;
+
+}
+
+/deep/ .mat-card-header-text{
+  margin: 0 !important;
+}
+
+#searchInput:focus{
+  outline-color: #ffcb3e;
+  color: #37556e;
+}
+
+.mat-spinner::ng-deep circle {
+  stroke: #ffcb3e;
+}
+
+.spinner-container{
+  margin-top: 300px;
+}
+
+.spinner-container mat-spinner{
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+  .title{
+    display: none;
+  }
+  .title-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #creat-inserat-button{
+    margin: 20px 0 0 20px;
+  }
+
+  #searchInput{
+    width: 100%;
+  }
+}
+
+

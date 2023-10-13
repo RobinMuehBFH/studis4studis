@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "inserate",
+  "info": {
+    "singularName": "inserat",
+    "pluralName": "inserate",
+    "displayName": "inserat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "state": {
+      "type": "string"
+    },
+    "price": {
+      "type": "float"
+    },
+    "imgPath": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "inserate"
+    }
+  }
+}

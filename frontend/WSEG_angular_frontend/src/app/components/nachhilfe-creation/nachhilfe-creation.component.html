@@ -1,0 +1,32 @@
+<div class="nachhilfe-creation-container">
+    <div class="nachhilfe-creation-header">
+        <h1>Nachhilfe anbieten</h1>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <div class="upperSection">
+                <div class="input-wrapper">
+                    <label class="label-title">Nachhilfe-Titel</label>
+                    <input id="title" type="text" formControlName="title" placeholder="Bereich angeben">
+                </div>
+                <div class="input-wrapper">
+                    <label class="label-title">Passende Module:</label>
+                    <input id="modul" type="text" formControlName="modul" placeholder="Module angeben">
+                </div>
+                <div class="input-wrapper">
+                  <label class="label-title">Verlangter Stundenlohn:</label>
+                  <input id="hourly-wage" type="text" formControlName="hourlyWage" placeholder="Preis eingeben">
+                </div>
+            </div>
+            <div>
+                <label class="label-title-textarea">Beschreibung:</label>
+                <textarea id="description" formControlName="description" cols="40" rows="5" placeholder="Beschreibung hinzufügen"></textarea>
+            </div>
+            <div>
+                <label class="label-title">Thumbnail hochladen:</label>
+                <input (change)="this.prepareImages($event)" type="file" id="img" name="img" accept="image/*">
+            </div>
+            <input type="submit" name="ineratCreation" value="Nachhilfe anbieten">
+        </form>
+    </div>
+</div>

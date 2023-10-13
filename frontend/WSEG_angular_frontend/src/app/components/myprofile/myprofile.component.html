@@ -1,0 +1,23 @@
+<div class="myprofile-container" *ngIf="this.user">
+    <div class="myprofile-header">
+        <h1>Mein Profil</h1>
+    </div>
+    <div class="myprofile-information">
+      <div class="img-container">
+        <img *ngIf="this.allCurrentUserInfos" id="profile-picture" src="http://localhost:1337{{this.allCurrentUserInfos.profilePicturePath}}" alt="user photo">
+        <label class="label-title">Profilbild hochladen:</label>
+        <input (change)="this.prepareImage($event)"type="file" id="img" accept="image/*">
+        <input (click)="submit()" type="submit" name="login" value="Bild hochladen" *ngIf="this.fileSet">
+      </div>
+      <div class="user-info-container">
+        <p>Username: {{this.user.username}}</p>
+        <p>Email: {{this.user.email}}</p>
+      </div>
+      <div class="upload-container">
+
+      </div>
+    </div>
+    <div class="form-container">
+        <input type="submit" name="logout" value="Ausloggen" (click)="this.logout()">
+    </div>
+</div>

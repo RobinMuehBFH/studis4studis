@@ -1,0 +1,28 @@
+    <nav>
+        <div class="logo" [routerLink]="'/inserat'">
+            <img src="../../assets/student.png" alt="Logo Image" >
+            <p class="nav-title">Studis4Studis</p>
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <div class="li-container">
+                <li><a [routerLink]="'/inserat'">Inserate</a></li>
+            </div>
+            <div class="li-container">
+                <li><a [routerLink]="'/nachhilfe'">Nachhilfe</a></li>
+            </div>
+            <div class="li-container">
+                <li><a [routerLink]="'/forum'">BFH-Forum</a></li>
+            </div>
+            <div class="li-container">
+                <li><button *ngIf="!this.authenticationService.getCurrentUser()" [routerLink]="'/login'" class="login-button">Login</button></li>
+            </div>
+            <div class="li-container" >
+                <li><button *ngIf="this.authenticationService.getCurrentUser()" [routerLink]="'/myprofile'" class="login-button">Mein Profil</button></li>
+            </div>
+        </ul>
+    </nav>

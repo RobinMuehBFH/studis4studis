@@ -1,0 +1,104 @@
+<div class="forum-container">
+  <div class="forum-header">
+    <p class="title">FORUM</p> <button *ngIf="this.authenticationService.getCurrentUser()" mat-raised-button class="bfh-button" id="create-question-button" (click)="openDialog(templateQuestion,0,0)" >FRAGE STELLEN</button>
+  </div>
+  <div class="forum-body">
+    <div class="title-container">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let question of this.questions; let i = index" id="expansion-panel{{i}}">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <img class="profile-picture" src="http://localhost:1337{{question.attributes.user.data.attributes.profilePicturePath}}" alt="user photo">
+              {{question.attributes.user.data.attributes.username}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{question.attributes.title}}
+            </mat-panel-description>
+            <mat-panel-description>
+              Betroffene Module: {{question.attributes.modul}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="question">
+            <h2>Frage:</h2>
+            <p>{{question.attributes.description}}</p>
+          </div>
+          <div class="answer-container">
+            <h2>Antworten:</h2>
+            <div class="answers" *ngFor="let answer of this.question.attributes.answers.data; let i = index">
+              <mat-card class="answer-body">
+                <div class="answer-user-information">
+                  <div class="user-info"><img class="profile-picture" src="http://localhost:1337{{answer.attributes.user.data.attributes.profilePicturePath}}" alt="user photo">{{answer.attributes.user.data.attributes.username}} antwortete am: {{this.getDate(answer.attributes.createdAt)}}</div>
+                  <div class="modification" *ngIf="this.authenticationService.getCurrentUser() && this.isOwnerOfAnswer(answer)">
+                    <mat-icon class="more-icon" aria-hidden="false" aria-label="more_vert" fontIcon="more_vert" [matMenuTriggerFor]="menu"></mat-icon>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="this.deleteAnswer(answer)">
+                        <mat-icon style="color: #fe6464;">delete</mat-icon>
+                        <span style="color: #fe6464; font-weight: bold">Löschen</span>
+                      </button>
+                      <button mat-menu-item disabled>
+                        <mat-icon style="color: grey">edit</mat-icon>
+                        <span style="font-weight: bold">Bearbeiten</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+                </div>
+                <p>{{answer.attributes.description}}</p>
+              </mat-card>
+            </div>
+            <div class="button-container">
+              <button *ngIf="this.authenticationService.getCurrentUser()" mat-raised-button class="bfh-button" (click)="openDialog(templateAnswer,i+1,question)">KOMMENTIEREN</button>
+              <button *ngIf="this.authenticationService.getCurrentUser() && !this.isOwnerOfQuestion(question)" mat-raised-button class="bfh-button-yellow" style="width: 30%">BENUTZER KONTAKTIEREN</button>
+              <button *ngIf="this.authenticationService.getCurrentUser() && this.isOwnerOfQuestion(question)" mat-raised-button class="bfh-button-red" (click)="this.deleteQuestion(question)">FRAGE LÖSCHEN</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+<ng-template #templateAnswer>
+  <div class="form-title">
+    <h1>FRAGE BEANTWORTEN</h1>
+  </div>
+  <div class="dialog-container">
+    <form [formGroup]="checkoutFormAnswer">
+      <div class="form-container-bottom">
+        <div class="upperSection">
+          <div class="input-wrapper">
+            <label class="label-title-textarea">Deine Antwort:</label>
+            <textarea class="description" formControlName="description" cols="40" rows="5" placeholder="Beschreibung hinzufügen"></textarea>
+          </div>
+        </div>
+        <button mat-raised-button class="bfh-button-yellow" (click)="this.addAnswer()">ANTWORTEN</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #templateQuestion>
+  <div class="form-title">
+    <h1>FRAGE STELLEN</h1>
+  </div>
+  <div class="dialog-container">
+    <form [formGroup]="checkoutFormQuestion">
+      <div class="form-container-bottom">
+        <div class="upperSection">
+          <div class="input-wrapper">
+            <label class="label-title">Frage-Titel:</label>
+            <input id="title" type="text" formControlName="title" placeholder="Titel eingeben">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Betroffene Module:</label>
+            <input id="subtitle" type="text" name="modul" formControlName="modul" placeholder="Untertitel eingeben">
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <label class="label-title-textarea">Frage formulieren:</label>
+          <textarea class="description" formControlName="description" cols="40" rows="5" placeholder="Beschreibung hinzufügen"></textarea>
+        </div>
+        <button mat-raised-button class="bfh-button-yellow" (click)="this.addQuestion()">ANTWORTEN</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

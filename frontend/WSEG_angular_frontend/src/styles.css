@@ -1,0 +1,49 @@
+html{
+  height: 100%;
+  width: 100%;
+  color: black;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #efefef;
+}
+
+/*{
+    margin: 0;
+    padding: 0;
+    color: #f2f5f7;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+  body{
+    overflow-x: hidden;
+  }*/
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* ----------------------------------------------------------------- custon styling -----------------------------------------------------------------*/
+
+.bfh-button{
+  height: 40px;
+  color: #fff;
+  background-color: #37556e;
+}
+.bfh-button-yellow{
+  height: 40px;
+  color: #37556e;
+  background-color: #ffcb3e;
+}
+.bfh-button-red{
+  height: 40px;
+  color: #ffffff;
+  background-color: #fe6464;
+}
+
+

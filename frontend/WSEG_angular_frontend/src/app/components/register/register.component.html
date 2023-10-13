@@ -1,0 +1,29 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>REGISTRIEREN</h1>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="checkoutForm" (ngSubmit)="registerNewUser()">
+            <div>
+                <label>Username</label>
+                <input type="text" formControlName="username" placeholder="Gib deinen Username ein" value="">
+            </div>
+            <div>
+                <label>E-Mail</label>
+                <input type="text" formControlName="email" placeholder="Gib deine E-Mail ein" value="">
+            </div>
+            <div>
+                <label>Passwort</label>
+                <input type="password" formControlName="password" placeholder="Gib dein Passwort ein" value="">
+            </div>
+            <div>
+                <label>Passwort bestätigen</label>
+                <input type="password" formControlName="passwordConfirmation" placeholder="Passwort wiederholen" value="">
+            </div>
+            <input type="submit" name="resgister" value="Bestätigen">
+            <div class="link-container">
+                <a [routerLink]="'/login'">Ich habe bereits einen Account</a>
+            </div>
+        </form>
+    </div>
+</div>

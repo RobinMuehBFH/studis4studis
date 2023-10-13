@@ -1,0 +1,113 @@
+<div class="nachhilfe-detail" *ngIf="this.nachhilfe">
+  <div class="nachhilfe-detail-upper">
+    <div class="nachhilfe-img-container">
+      <img *ngIf="this.nachhilfe.attributes.imgPath; else elseBlock" mat-card-image [src]="this.getFirstImage()" alt="Photo of the nachhilfe">
+      <ng-template #elseBlock>
+        <img mat-card-image src="https://www.nofshonit.co.il/static/placeholders/image-placeholder.png" alt="placeholder img">
+      </ng-template>
+    </div>
+    <div class="nachhilfe-detail-container">
+      <div class="title-header">
+        <h1>{{this.nachhilfe.attributes.title}}</h1>
+        <p>{{this.nachhilfe.attributes.modul}}</p>
+      </div>
+      <div class="form-container">
+        <div class="details-upper-part">
+          <div class="details-title">
+            <mat-icon class="icon" aria-hidden="false" id="uploadIcon" aria-label="cloud_upload" fontIcon="cloud_upload"></mat-icon><p>Hochgeladen am: {{this.returnDate(this.nachhilfe.attributes.publishedAt)}}</p>
+          </div>
+        </div>
+        <div class="details-middle-part">
+          <div class="price-save-container">
+            <p class="price-save" id="price">
+              Verlangter Stundenlohn: {{this.getPrice(this.nachhilfe.attributes.hourlyWage)}}
+            </p>
+            <p class="price-save">
+              <button mat-button class="bfh-button"><mat-icon aria-hidden="false" aria-label="bookmark_border" fontIcon="bookmark_border"></mat-icon>Speichern</button>
+            </p>
+          </div>
+        </div>
+        <div class="details-lower-part">
+          <p>Erstellt von:</p>
+          <div class="user-information">
+
+            <div class="user-information-name"*ngIf="this.user">
+              <img id="profile-picture" src="http://localhost:1337{{this.user.attributes.profilePicturePath}}" alt="user photo">
+              <p id="user-name">{{this.user.attributes.username}}</p>
+            </div>
+            <div class="user-rating">
+              <p>rating</p>
+            </div>
+          </div>
+          <div class="user-contact">
+            <button *ngIf="!this.isOwnerOfNachhilfe()"mat-raised-button class="bfh-button" (click)="openDialog(template)">KONTAKTIEREN</button>
+          </div>
+        </div>
+        <div class="modification-buttons">
+          <button *ngIf="this.isOwnerOfNachhilfe()" mat-raised-button class="bfh-button" id="editButton" (click)="openDialog(templateEdit)">BEARBEITEN</button>
+          <button *ngIf="this.isOwnerOfNachhilfe()" mat-raised-button class="bfh-button" id="deleteButton" (click)="this.deleteNachhilfe()">LÖSCHEN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nachhilfe-detail-bottom">
+    <div class="nachhilfe-detail-container-bottom">
+      <div class="title-header">
+        <h1>Beschreibung</h1>
+      </div>
+      <div class="form-container">
+        <div class="details-middle-part">
+          <div class="description-container">
+            <p class="description">
+              {{this.nachhilfe.attributes.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div *ngIf="this.nachhilfe && this.user">
+    <div class="dialog-container">
+      <div class="contact-user">
+        <h1 style="margin: 0px;">Kontaktdaten von {{this.nachhilfe.attributes.user.data.attributes.username}}</h1>
+        <img style="margin-left: 20px" class="profile-picture" src="http://localhost:1337{{this.user.attributes.profilePicturePath}}" alt="user photo">
+      </div>
+      <p>Telefonnummer: +41 78 967 55 75</p>
+      <p>Email: {{this.user.attributes.email}}</p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #templateEdit>
+  <div class="form-title">
+    <h1>NACHHILFE BEARBEITEN</h1>
+  </div>
+  <div class="dialog-container" *ngIf="this.nachhilfe && this.checkoutForm">
+    <form [formGroup]="checkoutForm">
+      <div class="form-container-bottom">
+        <div class="upperSection">
+          <div class="input-wrapper">
+            <label class="label-title">Nachhilfe-Titel:</label>
+            <input id="title" type="text" formControlName="title">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Betroffene Module</label>
+            <input id="subtitle" type="text" name="modul" formControlName="modul">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Stundenlohn:</label>
+            <input type="text" formControlName="hourlyWage">
+          </div>
+        </div>
+        <div>
+          <label class="label-title-textarea">Nachhilfe-Beschreibung:</label>
+          <textarea formControlName="description" cols="40" rows="5"></textarea>
+        </div>
+        <input type="submit" name="nachhilfeEdit" value="Nachhilfe bearbeiten" (click)="this.onSubmit()">
+      </div>
+    </form>
+  </div>
+</ng-template>

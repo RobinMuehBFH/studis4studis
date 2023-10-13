@@ -1,0 +1,24 @@
+<div class="login-container" *ngIf="!this.authenticationService.getCurrentUser()">
+    <div class="login-header">
+        <h1>Login</h1>
+    </div>
+  <mat-card class="answer-body">
+    <div class="form-container">
+        <form [formGroup]="checkoutForm">
+            <div>
+                <label>E-Mail</label>
+                <input type="text" formControlName="email" placeholder="Gib deine E-Mail ein" value="">
+            </div>
+            <div>
+                <label>Passwort</label>
+                <input type="password" formControlName="password" placeholder="Gib dein Passwort ein" value="">
+            </div>
+            <button mat-raised-button class="bfh-button-yellow" (click)="this.login()">Bestätigen</button>
+            <div class="link-container">
+                <a [routerLink]="'/register'">Registrieren</a>
+                <a [routerLink]="'/inserat'">Passwort vergessen?</a>
+            </div>
+        </form>
+    </div>
+  </mat-card>
+</div>

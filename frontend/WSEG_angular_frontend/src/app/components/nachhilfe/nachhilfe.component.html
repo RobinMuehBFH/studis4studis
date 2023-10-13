@@ -1,0 +1,68 @@
+ <div class="nachhilfe-container">
+    <div class="nachhilfe-header">
+        <div class="title-container">
+          <div class="title-container-first">
+            <p class="title">NACHHILFE</p>
+            <input type="search" (keyup)="onSearch($event)" placeholder="Suchen nach.." [ngModel]="this.searchInput" id="searchInput">
+            <select name="filterOptions" id="filterOptions" (change)="this.onFilterNachhilfen()">
+              <option value=”” disabled selected>Nachhilfen filtern</option>
+              <option value="titleAscending">Titel aufsteigend</option>
+              <option value="titleDescending">Titel absteigend</option>
+              <option value="priceAscending">Stundenlohn aufsteigend</option>
+              <option value="priceDescending">Stundenlohn absteigend</option>
+            </select>
+          </div>
+            <button *ngIf="this.authenticationService.getCurrentUser()" mat-raised-button class="bfh-button" [routerLink]="'/nachhilfe-creation'">NACHHILFE ANBIETEN</button>
+        </div>
+        <div class="suche-container">
+
+        </div>
+        <div class="filter-container">
+
+        </div>
+    </div>
+    <div class="nachhilfe-card-container">
+        <mat-card class="nachhilfe-card" *ngFor="let nachhilfe of this.filteredNachhilfen; let i = index">
+            <mat-card-header>
+              <mat-card-title>{{nachhilfe.attributes.title}}</mat-card-title>
+              <mat-card-subtitle>{{nachhilfe.attributes.modul}}</mat-card-subtitle>
+            </mat-card-header>
+          <img *ngIf="nachhilfe.attributes.imgPath; else elseBlock" mat-card-image src="http://localhost:1337{{nachhilfe.attributes.imgPath}}" alt="Photo of the nachhilfe">
+          <ng-template #elseBlock>
+            <img mat-card-image src="https://www.nofshonit.co.il/static/placeholders/image-placeholder.png" alt="Photo of the nachhilfe">
+          </ng-template>
+            <mat-card-content>
+              <p class="description">
+                {{nachhilfe.attributes.description}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Stundenlohn: CHF {{this.getPrice(nachhilfe.attributes.hourlyWage)}}</button>
+                <button mat-raised-button class="bfh-button" [routerLink]="[ '/nachhilfe-detail',nachhilfe.id]">DETAILS</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+<!--
+<div class="nachhilfe-detail-container">
+    <div class="login-header">
+        <h1>Login</h1>
+    </div>
+    <div class="nachhilfe-detail-card">
+        <div class="details-upper-part">
+            <div class="details-title">
+                <p>Titel: Mockup Book</p>
+                <p>Untertitel: Neu und ungebraucht!</p>
+            </div>
+        </div>
+        <div class="details-middle-part">
+
+        </div>
+        <div class="details-lower-part">
+
+        </div>
+    </div>
+</div>
+-->
+
+

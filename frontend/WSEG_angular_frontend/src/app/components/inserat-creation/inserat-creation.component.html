@@ -1,0 +1,36 @@
+<div class="inserat-creation-container">
+    <div class="inserat-creation-header">
+        <h1>Inserat erstellen</h1>
+    </div>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        <div class="upperSection">
+          <div class="input-wrapper">
+            <label class="label-title">Inserat-Titel:</label>
+            <input id="title" type="text" formControlName="title" placeholder="Titel eingeben">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Inserat-Untertitel:</label>
+            <input id="subtitle" type="text" name="subtitle" formControlName="subtitle" placeholder="Untertitel eingeben">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Preis:</label>
+            <input id="price" type="text" formControlName="price" placeholder="Preis eingeben">
+          </div>
+          <div class="input-wrapper">
+            <label class="label-title">Zustand:</label>
+            <input id="state" type="text" formControlName="state" placeholder="Zustand eingeben">
+          </div>
+        </div>
+        <div>
+          <label class="label-title-textarea">Inserat-Beschreibung:</label>
+          <textarea formControlName="description" cols="40" rows="5" placeholder="Beschreibung hinzufügen"></textarea>
+        </div>
+        <div>
+          <label class="label-title">Bilder hochladen:</label>
+          <input (change)="this.prepareImages($event)"type="file" id="img" formControlName="img" accept="image/*" multiple>
+        </div>
+        <input type="submit" name="ineratCreation" value="Inserat erstellen">
+      </div>
+    </form>
+</div>

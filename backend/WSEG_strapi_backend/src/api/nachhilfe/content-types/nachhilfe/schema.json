@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nachhilfen",
+  "info": {
+    "singularName": "nachhilfe",
+    "pluralName": "nachhilfen",
+    "displayName": "nachhilfe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "modul": {
+      "type": "string"
+    },
+    "imgPath": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "nachhilfen"
+    },
+    "hourlyWage": {
+      "type": "decimal"
+    }
+  }
+}
